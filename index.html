@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MystOS Recovery Environment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="click-to-start">Click anywhere to start simulation...</div>
+
+    <!-- Boot Sequence (POST) -->
+    <div id="boot-sequence-container" class="hidden"></div>
+
+    <!-- OS Loader Screen -->
+    <div id="os-loader-screen" class="hidden">
+        <div id="os-loader-logo">MystOS</div>
+        <div id="os-loader-progress-bar-container">
+            <div id="os-loader-progress-bar"></div>
+        </div>
+        <div id="os-loader-status">Initializing...</div>
+    </div>
+
+    <!-- Desktop Environment -->
+    <div id="desktop" class="hidden">
+        <div id="channel-intro">YOUR_CHANNEL_NAME_HERE</div>
+
+        <div id="myst_hd_icon" class="desktop-icon" style="top: 30px; left: 30px;">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3QgeD0iOCIgeT0iMTYiIHdpZHRoPSI0OCIgaGVpZ2h0PSIzMiIgcng9IjQiIHJ5PSI0IiBmaWxsPSIjYjBiMGJhIi8+PHJlY3QgeD0iMTIiIHk9IjIwIiB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIGZpbGw9IiNkY2RjZGUiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIxMCIgZmlsbD0iI2IwYjBiYSIvPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjIiIGZpbGw9IiMzMzMiLz48cmVjdCB4PSI0NiIgeT0iMTgiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiM4MDgwODAiLz48cmVjdCB4PSI0NiIgeT0iMjQiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiM4MDgwODAiLz48L3N2Zz4=" alt="MYSTERIUM_HD">
+            <span>MYSTERIUM_HD</span>
+        </div>
+        <div id="recycle_bin_icon_desktop" class="desktop-icon" style="position: absolute; bottom: 40px; right: 20px;">
+            <img id="recycle_bin_img_desktop" src="" alt="Recycle Bin">
+            <span>Recycle Bin</span>
+        </div>
+
+        <!-- START MENU STRUCTURE (Initially Hidden) -->
+        <div id="start-menu" class="hidden">
+            <div class="start-menu-sidebar">
+                <span>MystOS</span>
+            </div>
+            <div class="start-menu-items">
+                <div class="start-menu-item" data-action="open_myst_hd">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwMDAwMCIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnpNMy41IDEyYzAtMy4wMyAxLjA4LTUuNzcgMi44My03Ljg5TDE2Ljg5IDE0LjE3QzE0Ljc3IDE1LjkyIDEyLjAzIDE3IDkgMTdjLTIuMDggMC0zLjk4LS42Ny01LjUtMS43NlYxMnpNMTIgNWMyLjA4IDAgMy45OC42NyA1LjUgMS43NlYxMmMwIDMuMDMtMS4wOCA1Ljc3LTIuODMgNy44OUw3LjEzIDkuODNDOS4yMyA4LjA4IDEyIDcgMTUgN2MyLjA4IDAgMy45OC42NyA1LjUgMS43NnoiLz48cmVjdCB4PSI3IiB5PSIxMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjQiIHJ4PSIxIiByeT0iMSIgZmlsbD0iIzhGOTNBMSIvPjxyZWN0IHg9IjkiIHk9IjEwLjUiIHdpZHRoPSI2IiBoZWlnaHQ9IjMiIGZpbGw9IiNDNkQ4RkYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIyIiBmaWxsPSIjRkZGIi8+PC9zdmc+" alt="Drive Icon">
+                    MYSTERIUM_HD
+                </div>
+                <div class="start-menu-separator"></div>
+                <div class="start-menu-item" data-action="programs">Programs</div>
+                <div class="start-menu-item" data-action="documents">Documents</div>
+                <div class="start-menu-item" data-action="settings">Settings</div>
+                <div class="start-menu-item" data-action="find">Find</div>
+                <div class="start-menu-item" data-action="help">Help</div>
+                <div class="start-menu-item" data-action="run">Run...</div>
+                <div class="start-menu-separator"></div>
+                <div class="start-menu-item" data-action="shutdown">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwMDAwMCIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj48cGF0aCBkPSJNMTMgM2gtMnYxMGgyVjN6bS45MSA5LjA5Yy0yLjUgMC00LjUgMi00LjUgNC41czIgNC41IDQuNSA0LjUgNC41LTItNC41LTQuNXoiLz48L3N2Zz4=" alt="Shutdown Icon">
+                    Shut Down...
+                </div>
+            </div>
+        </div>
+        <!-- END START MENU STRUCTURE -->
+
+        <div id="taskbar">
+            <button id="taskbar-start-button" class="taskbar-button">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMDAwMDgwIj48cGF0aCBkPSJNMyAxOEgxMVYxNkgzVjE4Wk0zIDEzSDIxVjExSDNWMTNaTTMgNkgyMVY0SDNWNloiLz48L3N2Zz4=" alt="Start">
+                Start
+            </button>
+            <div class="taskbar-tray">
+                <div class="tray-icon" title="Volume">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTMgOXY2aDRsNSA1VjRMNyA5SDN6bTEzLjUgM2MwLTEuNzctMS4wMi0zLjI5LTIuNS00LjAzdjguMDVjMS40OC0uNzMgMi41LTIuMjUgMi41LTQuMDJ6TTQgMTFoMlYxM0g0di0yem0xMS41IDBjMC0uODItLjMyLTEuNTUtLjg4LTIuMTJsMS40Mi0xLjQyQzE3LjQ3IDguMDQgMTggOS40MyAxOCAxMXMtLjU3IDIuOTYtMS45NiA0LjA0bC0xLjQyLTEuNDJDMTQuNjggMTIuNTUgMTUuNSAxMS44MiAxNS41IDExWiIvPjwvc3ZnPg==" alt="Volume">
+                </div>
+                <div class="tray-icon" title="Network Error">
+                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0icmVkIj48cGF0aCBkPSJNMTIgMiBDNi40OCAyIDIgNi40OCAyIDEyUzYuNDggMjIgMTIgMjJBMTAgMTAgMCAwIDAgMTIgMlpNMTIgNGM0LjQxIDAgOCAzLjU5IDggOHMtMy41OSA4LTggOC04LTMuNTktOC04IDMuNTktOCA4IDhaTTEwLjYgMTYuOEwxMy40IDE0TDEwLjYgMTEuMkwxMS40IDEwLjRMMS40IDEzLjJMMy42IDE1LjZMMTEuNCAxNi44Wk0xMSAxNEgxM1YxNkgxMVYxNFpNMTEgOEgxM1YxMEgxMVY4WiIvPjwvc3ZnPg==" alt="Network Error">
+                </div>
+                <div id="taskbar-clock">12:00 AM</div>
+            </div>
+        </div>
+
+        <div id="file-explorer" class="window hidden">
+            <div class="window-header">
+                <span class="window-title">MYSTERIUM_HD</span>
+                <div class="window-controls">
+                    <button title="Close" class="window-control-close">r</button>
+                </div>
+            </div>
+            <div class="file-explorer-toolbar">
+                <button id="fe-up-button" class="taskbar-button">Up</button>
+                <span style="margin: 0 5px;">Address:</span>
+                <input type="text" id="address-bar" readonly>
+            </div>
+            <div class="window-content" id="file-listing-container">
+                 <div id="file-listing"></div>
+            </div>
+            <div id="file-explorer-status-bar">
+                <span id="fe-item-count">0 object(s)</span>
+                <span id="fe-space-free">--- MB Free</span>
+            </div>
+        </div>
+
+        <div id="recycle-bin-window" class="window hidden">
+            <div class="window-header">
+                <span class="window-title">Recycle Bin</span>
+                <div class="window-controls">
+                    <button title="Close" class="window-control-close">r</button>
+                </div>
+            </div>
+            <div id="recycle-bin-toolbar" class="file-explorer-toolbar">
+                <button id="rb-restore-button" class="taskbar-button">Restore Selected</button>
+                <button id="rb-empty-button" class="taskbar-button">Empty Recycle Bin</button>
+            </div>
+            <div class="window-content">
+                 <div id="recycle-bin-listing">
+                 </div>
+            </div>
+            <div id="recycle-bin-status-bar">
+                <span id="rb-item-count">0 object(s)</span>
+            </div>
+        </div>
+
+
+        <div id="generic-dialog" class="window hidden">
+            <div class="window-header">
+                <span id="dialog-title" class="window-title">System Message</span>
+                <div class="window-controls">
+                    <button id="dialog-close-button" title="Close" class="window-control-close">r</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div id="dialog-icon">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzIxOTZmMyI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTEgMTVoLTJ2LTZoMnY2em0wLThoLTJWN2gydjJ6Ii8+PC9zdmc+" alt="Info">
+                </div>
+                <div id="dialog-message">Dialog message text goes here.</div>
+            </div>
+            <div id="dialog-buttons">
+                <button id="dialog-ok-button" class="taskbar-button">OK</button>
+            </div>
+        </div>
+
+        <div id="cmd-dialog" class="window hidden">
+            <div class="window-header">
+                <span id="cmd-dialog-title" class="window-title">MystOS Command Processor</span>
+                <div class="window-controls">
+                    <button id="cmd-dialog-close-button" title="Close" class="window-control-close">r</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div id="cmd-output"></div>
+            </div>
+        </div>
+        
+        <div id="password-prompt-dialog" class="window hidden">
+            <div class="window-header">
+                <span id="password-prompt-title" class="window-title">Enter Password</span>
+                <div class="window-controls">
+                    <button id="password-prompt-close-button" title="Close" class="window-control-close">r</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <p>Enter password for: <strong id="password-prompt-filename">archive.zip</strong></p>
+                <input type="password" id="password-prompt-input">
+                <div id="password-prompt-error"></div>
+            </div>
+            <div id="password-prompt-buttons">
+                <button id="password-prompt-ok-button" class="taskbar-button">OK</button>
+                <button id="password-prompt-cancel-button" class="taskbar-button">Cancel</button>
+            </div>
+        </div>
+
+        <div id="desktop-context-menu" class="context-menu hidden">
+            <div class="context-menu-item" data-action="refresh">Refresh</div>
+            <div class="context-menu-separator"></div>
+            <div class="context-menu-item" data-action="sys_properties">System Properties</div>
+        </div>
+        <div id="file-context-menu" class="context-menu hidden">
+            <div class="context-menu-item" data-action="open">Open</div>
+            <div class="context-menu-separator"></div>
+            <div class="context-menu-item" data-action="delete_item">Delete</div>
+            <div class="context-menu-separator"></div>
+            <div class="context-menu-item" data-action="properties">Properties</div>
+        </div>
+    </div>
+
+    <!-- SHUTDOWN SCREEN -->
+    <div id="shutdown-screen" class="hidden">
+        <p>It is now safe to turn off your simulation.</p>
+        <p class="shutdown-glitch">[Or is it?]</p>
+    </div>
+
+
+    <audio id="audio-bios-beep" src="sfx/bios_beep.mp3" preload="auto"></audio>
+    <audio id="audio-hdd-seek" src="sfx/hdd_seek.mp3" preload="auto" loop></audio>
+    <audio id="audio-os-startup" src="sfx/os_startup_distorted.mp3" preload="auto"></audio>
+    <audio id="audio-click" src="sfx/clicker.mp3" preload="auto"></audio>
+    <audio id="audio-double-click" src="sfx/doubleclick.mp3" preload="auto"></audio>
+    <audio id="audio-error" src="sfx/error.mp3" preload="auto"></audio>
+    <audio id="audio-window-open" src="sfx/window_open.mp3" preload="auto"></audio>
+    <audio id="audio-window-close" src="sfx/window_close.mp3" preload="auto"></audio>
+    <audio id="audio-hdd-hum" src="sfx/hdd_hum_corrupted.mp3" preload="auto" loop></audio>
+    <audio id="audio-shell-handover" src="sfx/bootsound1.mp3" preload="auto"></audio>
+    <audio id="audio-recycle" src="sfx/recycle.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

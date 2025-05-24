@@ -1,0 +1,24 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# VS Code specific settings folder
+# You might want to commit .vscode/launch.json or .vscode/tasks.json
+# if they are generic and useful for others, but generally ignore the rest.
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Log files
+*.log
+
+# Environment variables - good practice even if you don't use them yet
+.env
+.env.local
+.env.*.local
+
+# If you ever have build outputs (less common for simple HTML/CSS/JS)
+# build/
+# dist/
