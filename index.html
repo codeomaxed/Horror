@@ -96,6 +96,7 @@
                 <span id="fe-item-count">0 object(s)</span>
                 <span id="fe-space-free">--- MB Free</span>
             </div>
+            <div class="window-resize-handle"></div>
         </div>
 
         <div id="recycle-bin-window" class="window hidden">
@@ -116,6 +117,7 @@
             <div id="recycle-bin-status-bar">
                 <span id="rb-item-count">0 object(s)</span>
             </div>
+            <div class="window-resize-handle"></div>
         </div>
 
 
@@ -135,6 +137,7 @@
             <div id="dialog-buttons">
                 <button id="dialog-ok-button" class="taskbar-button">OK</button>
             </div>
+            <div class="window-resize-handle"></div>
         </div>
 
         <div id="cmd-dialog" class="window hidden">
@@ -147,6 +150,7 @@
             <div class="window-content">
                 <div id="cmd-output"></div>
             </div>
+            <div class="window-resize-handle"></div>
         </div>
         
         <div id="password-prompt-dialog" class="window hidden">
@@ -165,15 +169,35 @@
                 <button id="password-prompt-ok-button" class="taskbar-button">OK</button>
                 <button id="password-prompt-cancel-button" class="taskbar-button">Cancel</button>
             </div>
+            <div class="window-resize-handle"></div>
+        </div>
+
+        <div id="video-player-window" class="window hidden">
+            <div class="window-header">
+                <span id="video-player-title" class="window-title">Video Player</span>
+                <div class="window-controls">
+                    <button id="video-player-close-button" title="Close" class="window-control-close">r</button>
+                </div>
+            </div>
+            <div class="window-content" id="video-player-content">
+                <video id="main-video-player" width="100%" height="auto" controls controlslist="nodownload nofullscreen noremoteplayback" disablepictureinpicture playsinline>
+                    <!-- <source src="" type="video/mp4"> Your browser does not support the video tag. -->
+                </video>
+                <!-- Custom controls will be added here later if needed -->
+            </div>
+            <div id="video-player-status-bar">
+                <span id="video-player-status">Idle</span>
+            </div>
+            <div class="window-resize-handle"></div>
         </div>
 
         <div id="desktop-context-menu" class="context-menu hidden">
-            <div class="context-menu-item" data-action="refresh">Refresh</div>
+            <div class="context-menu-item" data-action="refresh_desktop">Refresh</div>
             <div class="context-menu-separator"></div>
-            <div class="context-menu-item" data-action="sys_properties">System Properties</div>
+            <div class="context-menu-item" data-action="system_properties">System Properties</div>
         </div>
         <div id="file-context-menu" class="context-menu hidden">
-            <div class="context-menu-item" data-action="open">Open</div>
+            <div class="context-menu-item" data-action="open"><strong>Open</strong></div>
             <div class="context-menu-separator"></div>
             <div class="context-menu-item" data-action="delete_item">Delete</div>
             <div class="context-menu-separator"></div>

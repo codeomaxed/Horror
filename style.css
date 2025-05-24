@@ -296,7 +296,20 @@ body, html {
     display: flex;
     flex-direction: column;
     z-index: 100;
+    overflow: hidden; /* To contain the resize handle if it's absolutely positioned inside */
 }
+
+.window-resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background-color: transparent; /* Can add a small grip icon later if needed */
+    cursor: nwse-resize;
+    z-index: 101; /* Above window content but below other windows if overlapping */
+}
+
 .window-header {
     background-color: #000080;
     color: white;
@@ -342,8 +355,12 @@ body, html {
 }
 
 /* --- File Explorer & Recycle Bin Window --- */
-#file-explorer, #recycle-bin-window {
+#file-explorer, #recycle-bin-window, #video-player-window {
     top: 50px; left: 100px; width: 500px; height: 350px;
+}
+#video-player-window { /* Specific initial size for video player, can be adjusted */
+    width: 960px; 
+    height: 540px;
 }
 .file-explorer-toolbar {
     display: flex;
@@ -402,6 +419,26 @@ body, html {
     justify-content: space-between;
 }
 
+#video-player-content {
+    background-color: #000000; /* Black background for video area */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure video doesn't overflow content area */
+}
+
+#main-video-player {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Scales video to fit, maintaining aspect ratio */
+}
+
+#video-player-status-bar {
+    padding: 2px 5px;
+    font-size: 11px;
+    border-top: 1px solid #808080;
+    background-color: #C0C0C0; /* Match other status bars */
+}
 
 /* --- Context Menus --- */
 .context-menu {

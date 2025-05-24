@@ -1,0 +1,67 @@
+# Cline's Project Intelligence: MystOS Recovery Environment
+
+This file captures important patterns, preferences, and project intelligence for the MystOS Recovery Environment project. It helps Cline work more effectively by remembering key insights that aren't immediately obvious from the code alone.
+
+## General Notes:
+*   The project is a client-side simulation of a corrupted retro OS, now serving as the **primary interactive element for a YouTube horror/ARG series.**
+*   The narrative is delivered through **discoverable video logs and environmental clues** within the OS.
+*   All logic is currently in `index.html`, `style.css`, and `script.js`.
+*   The "corrupted" theme and **subtle analog horror-style glitch effects** are intentional features. Distinguishing these from actual unintended bugs is important.
+
+## Key Implementation Paths:
+*   **File/Folder Operations:**
+    *   `getItemFromPath(path)`: Crucial for retrieving objects from `fileSystem`.
+    *   `createFileItemElement(name, data, itemPath)`: Generates DOM for file/folder display.
+    *   `renderFileExplorer()`: Displays contents of `currentPath`.
+    *   `renderRecycleBinContents()`: Displays items from `recycleBinContents`.
+    *   `deleteItem(parentItemPath, itemName, itemData)`: Moves item to `recycleBinContents`.
+    *   `restoreSelectedItemFromRecycleBin()`: Moves item from `recycleBinContents` to `fileSystem`.
+*   **UI Interaction:**
+    *   `showContextMenu(event, type, targetElement)`: Displays context menus.
+    *   `handleContextMenuAction(action)`: Central handler for context menu actions.
+    *   `showDialog(title, message, iconTypeOrSvg)`: Flexible dialog display.
+    *   `feUpButton` handler: Navigates `currentPath` up.
+*   **Glitch Effects:**
+    *   `setupRareGlitches()`: Manages the probabilistic triggering of all glitch effects.
+    *   `glitchEffect_cursorStutter()`: Implements cursor stutter.
+    *   `glitchEffect_wrongCharFlicker()`: Implements wrong character flicker in text elements.
+    *   `glitchEffect_windowBreathe()`: Implements subtle window/taskbar scaling.
+*   **(Planned) Video Player:**
+    *   Will require functions for detecting video files, creating player UI, and controlling playback.
+
+## User Preferences & Workflow:
+*   Emphasis on a **grounded, twisted narrative** suitable for a horror series.
+*   Glitch effects should be **subtle and rare** to enhance atmosphere, not overly disrupt interaction.
+
+## Project-Specific Patterns:
+*   **In-Memory File System (`fileSystem`):** Central data store, now includes paths/references to video logs and narrative-specific files.
+*   **Global State Variables:** Used for `currentPath`, `selectedFileElement`, `contextMenuTarget`, `recycleBinContents`.
+*   **DOM Manipulation:** UI updates are done by directly changing the DOM.
+*   **Base64 SVG Icons:** Many icons embedded in `ICONS` object.
+*   **Path Handling:** Careful distinction between full paths and parent paths. Trailing slashes for folders.
+*   **Recycle Bin Logic:** `recycleBinContents` stores `originalPath` and item `data`.
+*   **Event Propagation:** `event.stopPropagation()` is critical in nested listeners.
+*   **Global State Variable Lifecycle:** Precise management of variables like `contextMenuTarget`.
+*   **Analog Horror Aesthetic:** Achieved through retro UI, sound design, and subtle, probabilistic glitch effects.
+*   **Probabilistic Glitches:** Effects are not deterministic, adding to unpredictability and unsettling feel.
+
+## Known Challenges:
+*   Distinguishing intentional glitches/narrative elements from actual bugs.
+*   Debugging without direct browser access (reliance on user).
+*   Managing `script.js` complexity as new features (like video player) are added.
+*   **Confirmation Dialogs:** `emptyRecycleBin` uses a placeholder; `showDialog` needs enhancement for true confirm/cancel.
+*   **Context Menu Specificity:** Recycle Bin items use generic `fileContextMenu`.
+*   **Integrating Video Player Seamlessly:** Ensuring the video player fits the OS aesthetic and functions well within the simulated environment.
+*   **Balancing Horror Atmosphere with Usability:** Ensuring the environment is unsettling but still allows users/viewers to discover narrative content.
+
+## Evolution of Project Decisions:
+*   **Pivoted project to support a YouTube horror series with discoverable video logs.**
+*   **Implemented subtle, probabilistic glitch effects (Cursor Stutter, Wrong Character Flicker, Window Breathe) to enhance analog horror feel.**
+*   **Adjusted file system content (`fileSystem` in `script.js`) to align with new horror narrative.**
+*   `showDialog` enhanced for SVG icons.
+*   Fixed file context menu bugs (event propagation, `contextMenuTarget` lifecycle).
+*   Confirmed full file deletion/restore/recycle bin cycle.
+
+## Tool Usage Patterns:
+*   `replace_in_file` is primary for `script.js`. SEARCH blocks need care due to auto-formatting.
+*   Memory Bank files (`activeContext.md`, `progress.md`, etc.) updated after significant implementations or project shifts.
